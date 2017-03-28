@@ -1,0 +1,293 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet" type="text/css">
+  <link href="truyenmoi.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><span>Brand</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <a href="<%= home_path %>">Trang Chủ<i class="fa fa-border fa-home pull-left"></i></a>
+          </li>
+          <li>
+            <a href="<%= new_path %>">Truyện Mới Cập Nhật</a>
+          </li>
+          <li>
+            <a href="#">Tất Cả Các Truyện</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+            aria-expanded="false">Thể Loại<br><i class="fa fa-caret-down pull-right"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <% @theloais.each do |t|%>
+              <li>
+                <a href="<%= theloai_path(t) %>"><%= t.title%></a>
+              </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+            <ul class="nav navbar-left navbar-nav">
+              <li class="active">
+                <a href="<%= home_path %>">Trang Chủ<i class="fa fa-border fa-home pull-left"></i></a>
+              </li>
+              <li>
+                <a href="<%= new_path %>">Truyện Mới Cập Nhật</a>
+              </li>
+              <li>
+                <a href="#">Tất Cả Các Truyện</a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                aria-expanded="false">Thể Loại<br><i class="fa fa-caret-down pull-right"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <% @theloais.each do |t|%>
+                  <li>
+                    <a href="<%= theloai_path(t) %>"><%= t.title%></a>
+                  </li>
+                  <%end%>
+                </ul>
+              </li>
+              <% if current_user %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                aria-expanded="false"><%= current_user.email %><br><i class="fa fa-caret-down pull-right"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="<%= logout_path%>">log out</a>"</li>
+                </ul>
+              </li>
+            </ul>
+            <% else %>
+          </ul>
+          <% end %>
+        </ul>
+        <form class="navbar-form navbar-right text-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Tìm Truyện</button>
+        </form>
+        <p class="navbar-right navbar-text">Truyện Song &nbsp;Ngữ
+          <br>
+        </p>
+        <% if current_user %>
+        <% else %>
+        <a class="btn btn-default navbar-btn navbar-left" data-toggle="modal" href="<%=login_path%>"><i class="fa fa-star fa-fw"></i>Đăng Nhập</a>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="background-image" style="background-image : url('http://studiohartistgroup.com/wp-content/uploads/2013/06/bg3.jpg')"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="text-info text-left">
+            <i class="fa fa-star fa-fw"></i>
+            <b>
+              <i>Truyện Song Ngữ Anh - Việt</i>
+            </b>
+            <br>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section"></div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <form class="form-horizontal" role="form">
+            <h3>phần này chưa làm xong</h3>
+            <%= form_for(:session, url: login_path) do |f| %>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <%= f.label :Email ,class: "control-label" %>
+                <br>
+              </div>
+              <div class="col-sm-10">
+                <%= f.email_field :email, :placeholder => "Email", class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <<%= f.label :'Mật Khẩu', class: "control-label" %>
+                <br>
+              </div>
+              <div class="col-sm-10">
+                <%= f.password_field :password, :placeholder => "Mật Khẩu" , class: "form-control"%>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">Remember me</label>
+                  </div>
+                </div>
+              </div>
+              <%= f.submit "Log in", class: "btn btn-default" %>
+              <% end %>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <h3 class="text-center">Let's read
+              <br>
+              <br>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="https://unsplash.imgix.net/photo-1418479631014-8cbf89db3431?w=1024&amp;q=50&amp;fm=jpg&amp;s=478a9a2196033db7c0bf3c8ba3707f4d"
+            class="img-responsive">
+          </div>
+          <div class="col-md-6">
+            <h1>Truyện song ngữ</h1>
+            <h3>Đọc sách ^^!</h3>
+            <p>Đọc sách mang lại cho ta rất nhiều tri thức mới, đưa ta đến với văn hóa
+              từ các nơi trên thế giới, nhưng kiến thức uyên sâu mà ông cha ta đã để
+              lại, nhưng vẻ &nbsp;đẹp kì vĩ của thiên nhiên, ... &nbsp;
+              <br>
+              <br>Không&nbsp;chỉ mang đến lợi ích từ việc đọc sách, việc đọc sách song ngữ
+              có thể giúp trau dồi thêm khả năng về ngôn ngữ của nước ngoài, lại mở rộng
+              hơn về văn hóa và lỗi sống của họ.&nbsp;
+              <br>
+              <br>Với mục&nbsp;đích đó, những mẩu truyện được sưu tầm &nbsp;giúp chúng ta
+              có thể vừa tiếp thu thêm kiến thức, vừa trau dồi vốn từ vựng và ngữ pháp,
+              lại vừa có thể thư giãn sau một ngày làm việc căng thẳng&nbsp;
+              <br>
+              <br>Nào chúng ta cùng đọc sách nào!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <form class="navbar-form navbar-right text-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Tìm Truyện</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="background-image" style="background-image : url('https://unsplash.imgix.net/uploads/14129863345840df499fc/0165574c?w=1024&amp;q=50&amp;fm=jpg&amp;s=6e5127e797feb9b5a72f7ae4a0f3a89b')"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <ul class="pagination">
+                <li>
+                  <a href="#">Trang Trước</a>
+                </li>
+                <li>
+                  <a href="#">1</a>
+                </li>
+                <li>
+                  <a href="#">2</a>
+                </li>
+                <li>
+                  <a href="#">3</a>
+                </li>
+                <li>
+                  <a href="#">4</a>
+                </li>
+                <li>
+                  <a href="#">5</a>
+                </li>
+                <li>
+                  <a href="#">Trang Sau</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="text-center">FAM</h1>
+              <p class="text-center">We are a group of University of Engineering and Technology
+                <br>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+              class="img-circle img-responsive">
+            </div>
+            <div class="col-md-2">
+              <h3 class="text-left">Ngô Hải Yến</h3>
+              <p class="text-left">K60-CD</p>
+            </div>
+            <div class="col-md-1">
+              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+              class="img-circle img-responsive">
+            </div>
+            <div class="col-md-2">
+              <h3 class="text-left">Bùi Diệu Linh</h3>
+              <p class="text-left">K60-CB</p>
+            </div>
+            <div class="col-md-1">
+              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+              class="img-circle img-responsive">
+            </div>
+            <div class="col-md-2">
+              <h3 class="text-left">Đinh Khắc Quý</h3>
+              <p class="text-left">K60-CAC
+                <br>
+              </p>
+            </div>
+            <div class="col-md-1">
+              <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+              class="img-circle img-responsive">
+            </div>
+            <div class="col-md-2">
+              <h3 class="text-left">Vũ Hoàng Long</h3>
+              <p class="text-left">K60-CAC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>

@@ -1,0 +1,2 @@
+module UptruyenHelper
+end

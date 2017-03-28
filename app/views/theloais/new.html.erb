@@ -1,0 +1,20 @@
+<h1>Thêm thể loại</h1>
+<h3>các thể loại hiện có</h3>
+<ol>
+  <% @theloais.each do |t|%>
+  <li>
+    <%=t.title %>
+  </li>
+  <%end%>
+</ol>
+<%= form_for(@theloai) do |f| %>
+<div class="col-sm-8">
+  <p>
+    <%= f.label :title  %><br>
+    <%= f.text_field :title ,class: "form-control"%>
+  </p>
+  <%= f.submit "Thêm",class: "btn btn-default" %>
+</div>
+<%end%>
+<a href="<%=uptruyen_path%>" class="btn btn-default">up thêm truyện<a>
+  <a href="<%=home_path%>" class="btn btn-default">về trang chủ<a>
